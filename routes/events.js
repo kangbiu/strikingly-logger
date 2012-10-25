@@ -15,7 +15,7 @@ exports.addEvent = function(req, res) {
     if (reply === null) {
       client.set('User.' + id, {});
     } else {
-      reply[event] ||= 0;
+      reply[event] = reply[event] || 0;
       reply[event] += 1;
       client.set('User.' + id, reply);
     }
