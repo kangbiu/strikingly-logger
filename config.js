@@ -1,2 +1,4 @@
 var config = {};
-config.allowedDomains = 'http://localhost'
+config.allowedDomains = '*';
+
+module.exports = config;
