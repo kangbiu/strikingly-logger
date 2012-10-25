@@ -25,6 +25,6 @@ exports.addEvent = function(req, res) {
     resultEvent['timestamps'].push(ts); // insert new timestamp
     
     client.set('User.' + id, JSON.stringify(result));
-    res.send({count:result[event]});
+    res.send({count:resultEvent['count']});
   });
 };
