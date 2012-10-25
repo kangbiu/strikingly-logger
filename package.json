@@ -1,15 +1,11 @@
 {
-  "name": "Strikingly-Statistics"
-    , "version": "0.0.1"
-    , "private": true
-    , "dependencies": {
-      "express": "2.5.8",
-      "jade": ">= 0.0.1",
-      "dnode": "0.9.6",
-      "stripe": "1.1.0"
+  "name": "Strikingly-Statistics",
+    "version": "0.0.2",
+    "dependencies": {
+      "express": "2.5.x"
+    },
+    "engines": {
+      "node": "0.8.x",
+      "npm": "1.1.x"
     }
-  , "engines": {
-    "node": "0.6.13",
-      "npm": "1.1.41"
-  }
 }
