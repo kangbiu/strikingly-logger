@@ -9,6 +9,8 @@ die () {
 
 [ "$#" -eq 1 ] || die "Require environment"
 
+environment=$1
+
 echo "Setting environments...$environment"
 if [ "$environment" == "staging" ]; then
   app_name='strikingly-logger-staging'
@@ -18,5 +20,5 @@ else
   die "$environment is not supported! Use staging or production"
 fi
 
-puts 'Deploying site to Heroku ...'
-puts `git push -f git@heroku.com:$app_name.git HEAD:master`
+echo 'Deploying site to Heroku ...'
+echo `git push -f git@heroku.com:$app_name.git HEAD:master`
