@@ -1,4 +1,4 @@
 var config = {};
-config.allowedDomains = '*';
+config.allowedDomains = process.env.ALLOWED_DOMAINS;
 
 module.exports = config;
