@@ -7,8 +7,8 @@ client.auth(redisURL.auth.split(":")[1]);
 var util = require("util");
 
 exports.addEvent = function(req, res) {
-  var id = req.params.user_id
-  var event = req.params.event
+  var id = req.body.user_id
+  var event = req.body.event
   console.log("Adding event: " + id + " " + event)
   client.get('User.' + id, function (err, reply) {    
     result = {'events':{}};
