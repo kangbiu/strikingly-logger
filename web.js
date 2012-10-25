@@ -1,5 +1,5 @@
 var express = require('express');
-    eventLogger = require('./routes/events')
+    event = require('./routes/events')
     
 var app = express.createServer();
 
