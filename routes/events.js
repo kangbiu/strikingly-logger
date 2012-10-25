@@ -21,7 +21,7 @@ exports.addEvent = function(req, res) {
     
     result[event] = result[event] || 0;
     result[event] += 1;
-    client.set('User.' + id, result.to_json);
+    client.set('User.' + id, JSON.stringify(result));
     res.send(result[event]);
   });
 };
