@@ -14,16 +14,14 @@ exports.addEvent = function(req, res) {
     console.log('result:')
     console.log(util.inspect(reply, false, null));
     
-    if (reply === null) {
-      result = {}
-      result[event] == 1
-      client.set('User.' + id, result);
-      res.send(result[event]);
-    } else {
-      reply[event] = reply[event] || 0;
-      reply[event] += 1;
-      client.set('User.' + id, reply);
-      res.send(reply[event]);
+    result = {};
+    if (reply !== null) {
+      result = JSON.parse(reply);
     }
+    
+    result[event] = result[event] || 0;
+    result[event] += 1;
+    client.set('User.' + id, result.to_json);
+    res.send(result[event]);
   });
 };
