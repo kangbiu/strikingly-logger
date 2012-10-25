@@ -21,7 +21,7 @@ exports.addEvent = function(req, res) {
       reply[event] = reply[event] || 0;
       reply[event] += 1;
       client.set('User.' + id, reply);
-      res.send(result[event]);
+      res.send(reply[event]);
     }
   });
 };
