@@ -13,11 +13,15 @@ exports.addEvent = function(req, res) {
     console.log('result:')
     console.log(reply);
     if (reply === null) {
-      client.set('User.' + id, {});
+      result = {}
+      result[event] == 0
+      client.set('User.' + id, result);
+      res.send(result);
     } else {
       reply[event] = reply[event] || 0;
       reply[event] += 1;
       client.set('User.' + id, reply);
+      res.send(reply);
     }
   });
 };
