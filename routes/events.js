@@ -10,10 +10,7 @@ exports.addEvent = function(req, res) {
   var id = req.params.user_id
   var event = req.params.event
   console.log("Adding event: " + id + " " + event)
-  client.get('User.' + id, function (err, reply) {
-    console.log('result:')
-    console.log(util.inspect(reply, false, null));
-    
+  client.get('User.' + id, function (err, reply) {    
     result = {};
     if (reply !== null) {
       result = JSON.parse(reply);
@@ -22,6 +19,6 @@ exports.addEvent = function(req, res) {
     result[event] = result[event] || 0;
     result[event] += 1;
     client.set('User.' + id, JSON.stringify(result));
-    res.send(result[event]);
+    res.send({count:result[event]});
   });
 };
