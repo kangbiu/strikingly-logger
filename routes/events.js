@@ -16,12 +16,12 @@ exports.addEvent = function(req, res) {
       result = {}
       result[event] == 0
       client.set('User.' + id, result);
-      res.send(result);
+      res.send(result.toString());
     } else {
       reply[event] = reply[event] || 0;
       reply[event] += 1;
       client.set('User.' + id, reply);
-      res.send(reply);
+      res.send(reply.toString());
     }
   });
 };
