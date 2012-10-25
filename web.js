@@ -16,7 +16,7 @@ app.configure(function () {
 //   response.send('Hello World!');
 // });
 
-app.post('/user/:user_id/log/:event', event.addEvent);
+app.get('/user/:user_id/events/:event', event.addEvent);
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
