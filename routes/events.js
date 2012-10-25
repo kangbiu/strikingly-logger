@@ -14,14 +14,14 @@ exports.addEvent = function(req, res) {
     console.log(reply);
     if (reply === null) {
       result = {}
-      result[event] == 0
+      result[event] == 1
       client.set('User.' + id, result);
-      res.send(result.toString());
+      res.send(result[event]);
     } else {
       reply[event] = reply[event] || 0;
       reply[event] += 1;
       client.set('User.' + id, reply);
-      res.send(reply.toString());
+      res.send(result[event]);
     }
   });
 };
