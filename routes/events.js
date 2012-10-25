@@ -11,13 +11,19 @@ exports.addEvent = function(req, res) {
   var event = req.params.event
   console.log("Adding event: " + id + " " + event)
   client.get('User.' + id, function (err, reply) {    
-    result = {};
+    result = {'events':{}};
     if (reply !== null) {
       result = JSON.parse(reply);
     }
     
-    result[event] = result[event] || 0;
-    result[event] += 1;
+    result['events'][event] = result['events'][event] || {'count': 0, 'timestamps':[]}; // initialize
+    resultEvent = result['events'][event];
+    
+    resultEvent['count']  += 1; // update the coun
+    var date = new Date();
+    var ts = Math.round(date.getTime() / 1000);
+    resultEvent['timestamps'].push(ts); // insert new timestamp
+    
     client.set('User.' + id, JSON.stringify(result));
     res.send({count:result[event]});
   });
