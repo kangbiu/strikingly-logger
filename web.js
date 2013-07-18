@@ -1,6 +1,8 @@
 var express = require('express');
     event = require('./routes/events')    
     config = require('./config')
+    error_logs = require('./routes/errorLogs')
+
 var app = express.createServer();
 
 //CORS middleware
@@ -19,6 +21,8 @@ app.configure(function () {
 });
 
 app.post('/events', event.addEvent);
+app.post('/error_logs', error_logs.savePageSubmitAction);
+app.get('/error_logs', error_logs.readRedisRecord);
 
 
 var port = process.env.PORT || 5000;
