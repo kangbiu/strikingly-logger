@@ -12,15 +12,16 @@ else
 
 TIME_TO_EXPIRE =config.redisKeyTimeToExpire
 SECRET_KEY = config.readRedisRecordSecret
+REDIS_KEY_PREFIX = config.redisKeyPrefix
 
-exports.savePageSubmitAction = function(req, res) {
-    var id = req.body.user_id
-    var projectId = req.body.project_id
-    var pageContent = req.body.page_content
-    var responseContent = req.body.response_content
+exports.createErrorLog = function(req, res) {
+    var id = req.body.userId
+    var projectId = req.body.projectId
+    var pageContent = req.body.pageContent
+    var responseContent = req.body.responseContent
     console.log("Saving Action Content: " + id + " " + projectId )
 
-    var key = 'pageError_'+projectId
+    var key = REDIS_KEY_PREFIX + projectId
 
     var jsonToStore = '{ "userId" : "'+id+'", "projectId" : "'+projectId+'" , "pageContent" : "'+pageContent+'", "responseContent" :"'+responseContent+'"}'
 
@@ -34,17 +35,24 @@ exports.savePageSubmitAction = function(req, res) {
 
 };
 
-exports.readRedisRecord = function(req, res) {
+exports.showErrorLog = function(req, res) {
     var query = require('url').parse(req.url,true).query;
 
     var id = query.redisKey
     var secret = query.secret
 
+    var readisKey = REDIS_KEY_PREFIX + id
+
     console.log("Read Action Content: " + id + " " + secret )
 
     if(secret == SECRET_KEY)
-        client.get(id, function(err, replies){
-                res.send(replies)
+        client.get(readisKey, function(err, replies){
+                if(replies==null){
+                    res.send("No Results FOUND")
+                }
+                else{
+                    res.send(replies)
+                }
             }
         );
     else

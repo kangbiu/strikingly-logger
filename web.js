@@ -1,7 +1,7 @@
 var express = require('express');
     event = require('./routes/events')    
     config = require('./config')
-    error_logs = require('./routes/errorLogs')
+    errorLogs = require('./routes/error_logs')
 
 var app = express.createServer();
 
@@ -21,8 +21,8 @@ app.configure(function () {
 });
 
 app.post('/events', event.addEvent);
-app.post('/error_logs', error_logs.savePageSubmitAction);
-app.get('/error_logs', error_logs.readRedisRecord);
+app.post('/error_logs', errorLogs.createErrorLog);
+app.get('/error_logs', errorLogs.showErrorLog);
 
 
 var port = process.env.PORT || 5000;
